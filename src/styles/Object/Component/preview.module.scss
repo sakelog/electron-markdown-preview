@@ -1,0 +1,42 @@
+:local {
+  .body {
+    h2,h3,h4,h5,h6 {
+      padding: .2rem 0;
+      margin: .6rem 0;
+    }
+    h2,h3 {
+      font-size: 2rem;
+    }
+    h4,h5 {
+      font-size: 1.6rem;
+    }
+    h6 {
+      font-size: 1.2rem;
+      border-bottom: 1px solid #666666;
+    }
+
+    p {
+      line-height:2rem;
+      @apply leading-relaxed p-2;
+    }
+    ul,ol {
+      @apply list-inside p-2;
+    }
+    ul {
+      @apply list-disc;
+    }
+    ol {
+      @apply list-decimal;
+    }
+    blockquote {
+      @apply bg-gray-200 rounded-md italic text-sm;
+      @apply mx-4 my-2;
+    }
+    a {
+      @apply text-sky-600 underline;
+    }
+    code {
+      @apply my-2;
+    }
+  }
+}
