@@ -1,11 +1,16 @@
 import React from 'react';
-import { markdownToHtml } from '../lib/markdownToHtml';
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 
-import { Flex, Box, Heading } from '@chakra-ui/react';
+import { Flex, Box } from '@chakra-ui/react';
 //@ts-ignore
 import style from '../styles/Object/Component/preview.module.scss';
 
-const Preview = (props: Preview.Props) => {
+const Preview = () => {
+  const htmlAll = useSelector<RootState>(
+    (state) => state.mainState.htmlAll
+  ) as string;
+
   return (
     <Flex h="100%" direction="column">
       <Box pb={2}>プレビュー</Box>
@@ -19,9 +24,10 @@ const Preview = (props: Preview.Props) => {
         borderColor="gray.200"
         rounded="md"
       >
-        <Heading>{props.title}</Heading>
         <Box
-          dangerouslySetInnerHTML={{ __html: markdownToHtml(props.markdown) }}
+          dangerouslySetInnerHTML={{
+            __html: htmlAll,
+          }}
           className={style.body}
         />
       </Flex>

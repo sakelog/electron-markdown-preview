@@ -1,10 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
+
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Layout from '../layout/base';
+import { store } from '../redux/store';
+import { Provider } from 'react-redux';
+
 import { App } from '../components/App';
 import '../styles/global.scss';
 
@@ -22,12 +26,18 @@ const cache = createCache({
 
 root?.render(
   <React.StrictMode>
-    <CacheProvider value={cache}>
-      <ChakraProvider>
-        <Layout>
+    {/* -- redux start -- */}
+    <Provider store={store}>
+      {/* -- chakra-ui start -- */}
+      <CacheProvider value={cache}>
+        <ChakraProvider>
+          {/* -- app start -- */}
           <App />
-        </Layout>
-      </ChakraProvider>
-    </CacheProvider>
+          {/* -- app end -- */}
+        </ChakraProvider>
+      </CacheProvider>
+      {/* -- chakra-ui end -- */}
+    </Provider>
+    {/* -- redux end -- */}
   </React.StrictMode>
 );

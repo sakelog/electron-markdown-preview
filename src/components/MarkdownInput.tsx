@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../redux/store';
+import { setMarkdownBody, setTitle, setHtmlAll } from '../redux/lib/slice';
 
 import {
   Flex,
@@ -8,17 +11,39 @@ import {
   Input,
   Textarea,
 } from '@chakra-ui/react';
-import { markdownToHtml } from '../lib/markdownToHtml';
 
-const MarkdownInput = (props: MarkdownInput.Props) => {
+const MarkdownInput = () => {
+  const title = useSelector<RootState>(
+    (state) => state.mainState.title
+  ) as string;
+  const markdownBody = useSelector<RootState>(
+    (state) => state.mainState.markdownBody
+  ) as string;
+
+  const dispatch = useDispatch<AppDispatch>();
+  const onTitleChange = useCallback(
+    (value: string) => {
+      dispatch(setTitle(value));
+      dispatch(setHtmlAll());
+    },
+    [title]
+  );
+  const onMarkdownChange = useCallback(
+    (value: string) => {
+      dispatch(setMarkdownBody(value));
+      dispatch(setHtmlAll());
+    },
+    [markdownBody]
+  );
+
   return (
     <Flex direction="column" h="100%">
       <FormControl pb={4}>
         <FormLabel htmlFor="markdownTitle">題名</FormLabel>
         <Input
           id="markdownTitle"
-          value={props.title}
-          onChange={(e) => props.setTitle(e.target.value)}
+          value={title}
+          onChange={(e) => onTitleChange(e.target.value)}
           variant="filled"
           type="text"
         />
@@ -28,8 +53,8 @@ const MarkdownInput = (props: MarkdownInput.Props) => {
         <FormLabel htmlFor="markdownBody">本文</FormLabel>
         <Textarea
           id="markdownBody"
-          value={props.markdown}
-          onChange={(e) => props.setMarkdown(e.target.value)}
+          value={markdownBody}
+          onChange={(e) => onMarkdownChange(e.target.value)}
           variant="filled"
           resize="none"
           overflow="scroll"

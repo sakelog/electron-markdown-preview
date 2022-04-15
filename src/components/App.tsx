@@ -1,37 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState, AppDispatch } from '../redux/store';
+import { setHtmlAll } from '../redux/lib/slice';
+
+import Layout from '../layout/base';
 import loadable from '@loadable/component';
 const MarkdownInput = loadable(() => import('./MarkdownInput'));
 const Preview = loadable(() => import('./Preview'));
-
 import { Grid, GridItem } from '@chakra-ui/react';
 
 const { myAPI } = window;
 
 export const App = () => {
-  const [title, setTitle] = useState<string>('title');
-  const [markdown, setMarkdown] = useState<string>('## test');
-
+  const dispatch = useDispatch<AppDispatch>();
+  const markdownAll = useSelector<RootState>(
+    (state) => state.mainState.markdownAll
+  ) as string;
+  const htmlAll = useSelector<RootState>(
+    (state) => state.mainState.htmlAll
+  ) as string;
+  const title = useSelector<RootState>(
+    (state) => state.mainState.title
+  ) as string;
   useEffect(() => {
     myAPI.update(title);
-  }, [title]);
+    dispatch(setHtmlAll());
+  }, [title, markdownAll, htmlAll]);
 
   return (
-    <Grid
-      templateColumns={{ base: 'repeat(1,1fr)', md: 'repeat(2, 1fr)' }}
-      gap={6}
-      h="100vh"
-    >
-      <GridItem p={4} h="100%">
-        <MarkdownInput
-          title={title}
-          setTitle={setTitle}
-          markdown={markdown}
-          setMarkdown={setMarkdown}
-        />
-      </GridItem>
-      <GridItem h="100%" p={4} overflow="hidden">
-        <Preview title={title} markdown={markdown} />
-      </GridItem>
-    </Grid>
+    <Layout>
+      <Grid
+        templateColumns={{ base: 'repeat(1,1fr)', md: 'repeat(2, 1fr)' }}
+        gap={6}
+        h="100%"
+      >
+        <GridItem p={4} h="100%">
+          <MarkdownInput />
+        </GridItem>
+        <GridItem h="100%" p={4} overflow="hidden">
+          <Preview />
+        </GridItem>
+      </Grid>
+    </Layout>
   );
 };
