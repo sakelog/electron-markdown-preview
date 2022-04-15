@@ -8,7 +8,7 @@ import ButtonBase from './ButtonBase';
 
 const { myAPI } = window;
 
-const FileOpenButton = () => {
+const ButtonFileOpen = () => {
   const dispatch = useDispatch<AppDispatch>();
   const onHandleInput = useCallback(async () => {
     const { inputTitle, inputMarkdownBody } = await myAPI.fileOpen();
@@ -21,4 +21,4 @@ const FileOpenButton = () => {
   return <ButtonBase clickFunction={onHandleInput}>ファイルを開く</ButtonBase>;
 };
 
-export default FileOpenButton;
+export default ButtonFileOpen;

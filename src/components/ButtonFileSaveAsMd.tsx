@@ -2,31 +2,32 @@ import React, { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
-import { setTitle, setHtmlAll } from '../redux/lib/slice';
+import { setTitle } from '../redux/lib/slice';
 
 import ButtonBase from './ButtonBase';
 
 const { myAPI } = window;
 
-const FileOpenButton = () => {
+const ButtonFileSaveAsMd = () => {
   const title = useSelector<RootState>(
     (state) => state.mainState.title
   ) as string;
-  const htmlAll = useSelector<RootState>(
-    (state) => state.mainState.htmlAll
+  const markdownBody = useSelector<RootState>(
+    (state) => state.mainState.markdownBody
   ) as string;
 
   const dispatch = useDispatch<AppDispatch>();
   const onHandleSave = useCallback(async () => {
-    dispatch(setHtmlAll());
-    const { outputTitle, status } = await myAPI.fileSaveAsHtml({
+    const { outputTitle, status } = await myAPI.fileSaveAsMd({
       title,
-      htmlAll,
+      markdownBody,
     });
     status && dispatch(setTitle(outputTitle));
-  }, [htmlAll]);
+  }, [markdownBody]);
 
-  return <ButtonBase clickFunction={onHandleSave}>HTMLとして保存</ButtonBase>;
+  return (
+    <ButtonBase clickFunction={onHandleSave}>Markdownとして保存</ButtonBase>
+  );
 };
 
-export default FileOpenButton;
+export default ButtonFileSaveAsMd;
