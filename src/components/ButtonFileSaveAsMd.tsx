@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { setTitle } from '../redux/lib/slice';
 
-import ButtonBase from './ButtonBase';
+import { Button } from '@chakra-ui/react';
 
 const { myAPI } = window;
 
@@ -25,9 +25,7 @@ const ButtonFileSaveAsMd = () => {
     status && dispatch(setTitle(outputTitle));
   }, [markdownBody]);
 
-  return (
-    <ButtonBase clickFunction={onHandleSave}>Markdownとして保存</ButtonBase>
-  );
+  return <Button onClick={onHandleSave}>Markdownとして保存</Button>;
 };
 
 export default ButtonFileSaveAsMd;

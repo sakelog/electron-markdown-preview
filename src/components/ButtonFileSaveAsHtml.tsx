@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { setTitle, setHtmlAll } from '../redux/lib/slice';
 
-import ButtonBase from './ButtonBase';
+import { Button } from '@chakra-ui/react';
 
 const { myAPI } = window;
 
@@ -26,7 +26,7 @@ const ButtonFileSaveAsHtml = () => {
     status && dispatch(setTitle(outputTitle));
   }, [htmlAll]);
 
-  return <ButtonBase clickFunction={onHandleSave}>HTMLとして保存</ButtonBase>;
+  return <Button onClick={onHandleSave}>HTMLとして保存</Button>;
 };
 
 export default ButtonFileSaveAsHtml;

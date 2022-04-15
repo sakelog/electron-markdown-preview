@@ -4,7 +4,12 @@ import { createRoot } from 'react-dom/client';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 
-import { ChakraProvider } from '@chakra-ui/react';
+import {
+  ChakraProvider,
+  extendTheme,
+  withDefaultColorScheme,
+  withDefaultSize,
+} from '@chakra-ui/react';
 
 import { store } from '../redux/store';
 import { Provider } from 'react-redux';
@@ -22,15 +27,26 @@ if (container) {
     nonce: nonce,
     prepend: true,
   });
-
   const root = createRoot(container);
+
+  const theme = extendTheme(
+    withDefaultColorScheme({
+      colorScheme: 'blue',
+      components: ['Button'],
+    }),
+    withDefaultSize({
+      size: 'sm',
+      components: ['Button'],
+    })
+  );
+
   root.render(
     <React.StrictMode>
       {/* -- redux start -- */}
       <Provider store={store}>
         {/* -- chakra-ui start -- */}
         <CacheProvider value={cache}>
-          <ChakraProvider>
+          <ChakraProvider theme={theme}>
             {/* -- app start -- */}
             <App />
             {/* -- app end -- */}
