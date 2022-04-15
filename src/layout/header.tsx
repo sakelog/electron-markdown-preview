@@ -1,9 +1,7 @@
 import React from 'react';
 import { Flex, Spacer, Box, Heading, ButtonGroup } from '@chakra-ui/react';
 
-import FileInputButton from '../components/FileOpenButton';
-import FileSaveAsMdButton from '../components/FileSaveAsMdButton';
-import FileSaveAsHtmlButton from '../components/FileSaveAsHtmlButton';
+import ButtonFileInput from '../components/FileOpenButton';
 
 const Header = () => {
   return (
@@ -15,9 +13,7 @@ const Header = () => {
         <Spacer />
         <Box>
           <ButtonGroup>
-            <FileInputButton />
-            <FileSaveAsMdButton />
-            <FileSaveAsHtmlButton />
+            <ButtonFileInput />
           </ButtonGroup>
         </Box>
       </Flex>
