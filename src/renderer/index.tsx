@@ -13,31 +13,32 @@ import { App } from '../components/App';
 import '../styles/global.scss';
 
 const container = document.getElementById('root');
-const root = container && createRoot(container);
+if (container) {
+  const nonce = document.head
+    .querySelector('[property~=csp-nonce][content]')
+    ?.getAttribute('content') as string;
+  const cache = createCache({
+    key: 'my-prefix-key',
+    nonce: nonce,
+    prepend: true,
+  });
 
-const nonce = document.head
-  .querySelector('[property~=csp-nonce][content]')
-  ?.getAttribute('content') as string;
-const cache = createCache({
-  key: 'my-prefix-key',
-  nonce: nonce,
-  prepend: true,
-});
-
-root?.render(
-  <React.StrictMode>
-    {/* -- redux start -- */}
-    <Provider store={store}>
-      {/* -- chakra-ui start -- */}
-      <CacheProvider value={cache}>
-        <ChakraProvider>
-          {/* -- app start -- */}
-          <App />
-          {/* -- app end -- */}
-        </ChakraProvider>
-      </CacheProvider>
-      {/* -- chakra-ui end -- */}
-    </Provider>
-    {/* -- redux end -- */}
-  </React.StrictMode>
-);
+  const root = createRoot(container);
+  root.render(
+    <React.StrictMode>
+      {/* -- redux start -- */}
+      <Provider store={store}>
+        {/* -- chakra-ui start -- */}
+        <CacheProvider value={cache}>
+          <ChakraProvider>
+            {/* -- app start -- */}
+            <App />
+            {/* -- app end -- */}
+          </ChakraProvider>
+        </CacheProvider>
+        {/* -- chakra-ui end -- */}
+      </Provider>
+      {/* -- redux end -- */}
+    </React.StrictMode>
+  );
+}

@@ -1,6 +1,7 @@
 import { Configuration } from "webpack";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from 'path';
 
 const isDev = process.env.NODE_ENV === "development";
 
@@ -23,15 +24,8 @@ const common: Configuration = {
       {
         test: /\.s?css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                mode: "global",
-              },
-            },
-          },
+          MiniCssExtractPlugin.loader, 
+          "css-loader",
           "sass-loader",
         ],
       },
@@ -45,7 +39,11 @@ const main: Configuration = {
   ...common,
   target: "electron-main",
   entry: {
-    main: "./src/main.ts",
+    main: path.resolve(__dirname,"src","main.ts"),
+  },
+  node: {
+    __dirname: false,
+    __filename: false,
   },
 };
 
@@ -53,19 +51,20 @@ const preload: Configuration = {
   ...common,
   target: "electron-preload",
   entry: {
-    preload: "./src/preload.ts",
+    preload: path.resolve(__dirname,"src","preload.ts"),
   },
 };
 
 const renderer: Configuration = {
   ...common,
-  target: "web",
+  target: "electron-renderer",
   entry: {
-    app: "./src/renderer/index.tsx",
+    index: path.resolve(__dirname,"src","renderer","index.tsx"),
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/renderer/index.html",
+      template: path.resolve(__dirname,"src","renderer","index.html"),
+      filename: 'index.html',
     }),
     new MiniCssExtractPlugin(),
   ],
