@@ -13,8 +13,8 @@ type reducerState = {
 };
 
 const initialState: reducerState = {
-  title: 'title',
-  markdownBody: '## test',
+  title: '',
+  markdownBody: '',
   markdownAll: '',
   htmlBody: '',
   htmlAll: '',
@@ -31,12 +31,20 @@ export const markdownSlice = createSlice({
       state.markdownBody = action.payload;
     },
     setHtmlBody: (state) => {
-      state.htmlBody = markdownToHtml(concatMarkdown(state));
+      state.htmlBody = markdownToHtml(
+        concatMarkdown({
+          title: state.title,
+          markdownBody: state.markdownBody,
+        })
+      );
     },
     setHtmlAll: (state) => {
       state.htmlAll = markdownToHtmlDocument({
         title: state.title,
-        markdown: concatMarkdown(state),
+        markdown: concatMarkdown({
+          title: state.title,
+          markdownBody: state.markdownBody,
+        }),
       });
     },
   },
@@ -47,6 +55,14 @@ export const { setTitle, setMarkdownBody, setHtmlBody, setHtmlAll } =
 
 export default markdownSlice.reducer;
 
-const concatMarkdown = (state: reducerState) => {
-  return '# ' + state.title + '\n\n' + state.markdownBody;
+const concatMarkdown = ({
+  title,
+  markdownBody,
+}: {
+  title: string;
+  markdownBody: string;
+}) => {
+  return title === '' && markdownBody === ''
+    ? ''
+    : (title === '' ? '' : '# ' + title) + ('\n\n' + markdownBody);
 };
