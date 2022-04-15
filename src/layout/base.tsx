@@ -6,7 +6,9 @@ const LayoutBase = (props: { children: ReactNode }) => {
   return (
     <Flex h="100vh" direction="column">
       <Header />
-      <Box flex="1">{props.children}</Box>
+      <Box flex="1 1 auto" overflow="hidden">
+        {props.children}
+      </Box>
     </Flex>
   );
 };

@@ -31,14 +31,12 @@ export const markdownSlice = createSlice({
       state.markdownBody = action.payload;
     },
     setHtmlBody: (state) => {
-      state.htmlBody = markdownToHtml(
-        '# ' + state.title + '\n\n' + state.markdownBody
-      );
+      state.htmlBody = markdownToHtml(concatMarkdown(state));
     },
     setHtmlAll: (state) => {
       state.htmlAll = markdownToHtmlDocument({
         title: state.title,
-        markdown: '# ' + state.title + '\n\n' + state.markdownBody,
+        markdown: concatMarkdown(state),
       });
     },
   },
@@ -48,3 +46,7 @@ export const { setTitle, setMarkdownBody, setHtmlBody, setHtmlAll } =
   markdownSlice.actions;
 
 export default markdownSlice.reducer;
+
+const concatMarkdown = (state: reducerState) => {
+  return '# ' + state.title + '\n\n' + state.markdownBody;
+};

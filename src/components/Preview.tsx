@@ -3,8 +3,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 
 import { Flex, Box } from '@chakra-ui/react';
-//@ts-ignore
-import style from '../styles/Object/Component/preview.module.scss';
 
 const Preview = () => {
   const htmlBody = useSelector<RootState>(
@@ -28,7 +26,73 @@ const Preview = () => {
           dangerouslySetInnerHTML={{
             __html: htmlBody,
           }}
-          className={style.body}
+          sx={{
+            h1: {
+              fontWeight: 'bold',
+              fontSize: '4xl',
+              borderBottom: '3px solid',
+              marginBottom: '4',
+              padding: '2',
+            },
+            h2: {
+              fontSize: '4xl',
+              backgroundColor: 'gray.100',
+              marginTop: '4',
+              marginBottom: '4',
+              padding: '2',
+            },
+            h3: {
+              fontWeight: 'bold',
+              fontSize: '2xl',
+              border: '2px solid',
+              borderColor: 'gray.400',
+              marginTop: '4',
+              marginBottom: '4',
+              padding: '2',
+            },
+            h4: {
+              fontSize: '2xl',
+              marginTop: '4',
+              marginBottom: '4',
+              padding: '2',
+            },
+            h5: {
+              fontWeight: 'bold',
+              fontSize: 'xl',
+              marginTop: '4',
+              marginBottom: '4',
+              padding: '2',
+            },
+            h6: {
+              fontSize: 'xl',
+              marginTop: '4',
+              marginBottom: '4',
+              padding: '2',
+            },
+            blockQuote: {
+              borderLeft: '3px solid',
+              borderColor: 'gray.400',
+              fontStyle: 'italic',
+              paddingLeft: '2',
+            },
+            a: {
+              color: 'blue.400',
+              textDecoration: 'underline',
+            },
+            img: {
+              margin: '4',
+            },
+            pre: {
+              marginTop: '2',
+              marginBottom: '2',
+            },
+            ul: {
+              listStylePosition: 'inside',
+            },
+            ol: {
+              listStylePosition: 'inside',
+            },
+          }}
         />
       </Flex>
     </Flex>
