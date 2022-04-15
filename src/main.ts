@@ -23,6 +23,8 @@ const createWindow = async () => {
     },
   });
 
+  mainWindow.setMenu(null);
+
   ipcMain.on("update-title", (_e, arg) => {
     mainWindow.setTitle(`MarkdownPreview: ${arg}`);
   });
