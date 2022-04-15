@@ -38,8 +38,7 @@ const Preview = () => {
             h2: {
               fontSize: '4xl',
               backgroundColor: 'gray.100',
-              marginTop: '4',
-              marginBottom: '4',
+              marginY: '4',
               padding: '2',
             },
             h3: {
@@ -47,27 +46,23 @@ const Preview = () => {
               fontSize: '2xl',
               border: '2px solid',
               borderColor: 'gray.400',
-              marginTop: '4',
-              marginBottom: '4',
+              marginY: '4',
               padding: '2',
             },
             h4: {
               fontSize: '2xl',
-              marginTop: '4',
-              marginBottom: '4',
+              marginY: '4',
               padding: '2',
             },
             h5: {
               fontWeight: 'bold',
               fontSize: 'xl',
-              marginTop: '4',
-              marginBottom: '4',
+              marginY: '4',
               padding: '2',
             },
             h6: {
               fontSize: 'xl',
-              marginTop: '4',
-              marginBottom: '4',
+              marginY: '4',
               padding: '2',
             },
             blockQuote: {
@@ -92,6 +87,10 @@ const Preview = () => {
             },
             ol: {
               listStylePosition: 'inside',
+            },
+            hr: {
+              backgroundColor: 'gray.400',
+              marginY: '2',
             },
           }}
         />
