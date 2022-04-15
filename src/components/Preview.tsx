@@ -16,10 +16,9 @@ const Preview = () => {
       <Flex
         direction="column"
         flex="1"
-        px={4}
-        py={2}
+        p={2}
         overflowY="scroll"
-        border="2px"
+        borderWidth="medium"
         borderColor="gray.200"
         rounded="md"
       >
@@ -95,7 +94,7 @@ const Preview = () => {
           }}
         />
       </Flex>
-      <Box py={4}>
+      <Box pt={4}>
         <ButtonFileSaveAsHtml />
       </Box>
     </Flex>

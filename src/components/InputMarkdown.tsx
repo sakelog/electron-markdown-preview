@@ -61,10 +61,11 @@ const InputMarkdown = () => {
           resize="none"
           overflowY="scroll"
           flex="1"
+          spellCheck={false}
         />
         <FormHelperText>本文をマークダウン形式で入力</FormHelperText>
       </FormControl>
-      <Box py={4}>
+      <Box pt={4}>
         <ButtonFileSaveAsMd />
       </Box>
     </Flex>

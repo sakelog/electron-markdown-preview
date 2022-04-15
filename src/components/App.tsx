@@ -32,7 +32,8 @@ export const App = () => {
     <Layout>
       <Grid
         templateColumns={{ base: 'repeat(1,1fr)', md: 'repeat(2, 1fr)' }}
-        gap={6}
+        templateRows={{ base: 'repeat(2,1fr)', md: 'repeat(1,1fr)' }}
+        gap={{ base: 2, md: 6 }}
         h="100%"
       >
         <GridItem p={4} h="100%">
