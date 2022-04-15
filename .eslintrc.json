@@ -12,11 +12,7 @@
     "prettier/@typescript-eslint",
     "plugin:react/recommended"
   ],
-  "plugins": [
-    "react",
-    "react-hooks",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "react-hooks", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -27,12 +23,6 @@
     }
   },
   "rules": {
-    "prettier/prettier":[
-      "warn",
-      {
-        "singleQuote":true
-      }
-    ],
     "react/prop-types": "off"
   }
 }

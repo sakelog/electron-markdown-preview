@@ -50,8 +50,12 @@ export const markdownSlice = createSlice({
   },
 });
 
-export const { setTitle, setMarkdownBody, setHtmlBody, setHtmlAll } =
-  markdownSlice.actions;
+export const {
+  setTitle,
+  setMarkdownBody,
+  setHtmlBody,
+  setHtmlAll,
+} = markdownSlice.actions;
 
 export default markdownSlice.reducer;
 
@@ -64,5 +68,6 @@ const concatMarkdown = ({
 }) => {
   return title === '' && markdownBody === ''
     ? ''
-    : (title === '' ? '' : '# ' + title) + ('\n\n' + markdownBody);
+    : (title === '' ? '' : '# ' + title) +
+        ('\n\n' + markdownBody);
 };

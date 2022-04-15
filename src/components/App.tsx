@@ -1,11 +1,19 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState, AppDispatch } from '../redux/store';
-import { setHtmlAll, setHtmlBody } from '../redux/lib/slice';
+import type {
+  RootState,
+  AppDispatch,
+} from '../redux/store';
+import {
+  setHtmlAll,
+  setHtmlBody,
+} from '../redux/lib/slice';
 
 import Layout from '../layout/base';
 import loadable from '@loadable/component';
-const InputMarkdown = loadable(() => import('./InputMarkdown'));
+const InputMarkdown = loadable(
+  () => import('./InputMarkdown')
+);
 const Preview = loadable(() => import('./Preview'));
 import { Grid, GridItem } from '@chakra-ui/react';
 
@@ -31,8 +39,14 @@ export const App = () => {
   return (
     <Layout>
       <Grid
-        templateColumns={{ base: 'repeat(1,1fr)', md: 'repeat(2, 1fr)' }}
-        templateRows={{ base: 'repeat(2,1fr)', md: 'repeat(1,1fr)' }}
+        templateColumns={{
+          base: 'repeat(1,1fr)',
+          md: 'repeat(2, 1fr)',
+        }}
+        templateRows={{
+          base: 'repeat(2,1fr)',
+          md: 'repeat(1,1fr)',
+        }}
         gap={{ base: 2, md: 6 }}
         h="100%"
       >

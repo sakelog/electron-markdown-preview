@@ -18,14 +18,19 @@ const ButtonFileSaveAsMd = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const onHandleSave = useCallback(async () => {
-    const { outputTitle, status } = await myAPI.fileSaveAsMd({
-      title,
-      markdownBody,
-    });
+    const { outputTitle, status } =
+      await myAPI.fileSaveAsMd({
+        title,
+        markdownBody,
+      });
     status && dispatch(setTitle(outputTitle));
   }, [markdownBody]);
 
-  return <Button onClick={onHandleSave}>Markdownとして保存</Button>;
+  return (
+    <Button onClick={onHandleSave}>
+      Markdownとして保存
+    </Button>
+  );
 };
 
 export default ButtonFileSaveAsMd;

@@ -19,14 +19,17 @@ const ButtonFileSaveAsHtml = () => {
   const dispatch = useDispatch<AppDispatch>();
   const onHandleSave = useCallback(async () => {
     dispatch(setHtmlAll());
-    const { outputTitle, status } = await myAPI.fileSaveAsHtml({
-      title,
-      htmlAll,
-    });
+    const { outputTitle, status } =
+      await myAPI.fileSaveAsHtml({
+        title,
+        htmlAll,
+      });
     status && dispatch(setTitle(outputTitle));
   }, [htmlAll]);
 
-  return <Button onClick={onHandleSave}>HTMLとして保存</Button>;
+  return (
+    <Button onClick={onHandleSave}>HTMLとして保存</Button>
+  );
 };
 
 export default ButtonFileSaveAsHtml;
