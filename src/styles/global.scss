@@ -1,19 +1,9 @@
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background: #666666;
-  border-radius: 2px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+/*===========================================
+  Foundation
+  ===========================================*/
+@import './Foundation/base.scss';
+/*===========================================
+  Object
+  ===========================================*/
 // Utility
 @import './Object/Utility/u-highlight.scss';
