@@ -13,9 +13,6 @@ const { myAPI } = window;
 
 export const App = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const markdownAll = useSelector<RootState>(
-    (state) => state.mainState.markdownAll
-  ) as string;
   const htmlAll = useSelector<RootState>(
     (state) => state.mainState.htmlAll
   ) as string;
@@ -25,7 +22,7 @@ export const App = () => {
   useEffect(() => {
     myAPI.update(title);
     dispatch(setHtmlAll());
-  }, [title, markdownAll, htmlAll]);
+  }, [title, htmlAll]);
 
   return (
     <Layout>
