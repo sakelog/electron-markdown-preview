@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from '../redux/store';
-import { setHtmlAll } from '../redux/lib/slice';
+import { setHtmlAll, setHtmlBody } from '../redux/lib/slice';
 
 import Layout from '../layout/base';
 import loadable from '@loadable/component';
@@ -13,6 +13,9 @@ const { myAPI } = window;
 
 export const App = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const htmlBody = useSelector<RootState>(
+    (state) => state.mainState.htmlBody
+  ) as string;
   const htmlAll = useSelector<RootState>(
     (state) => state.mainState.htmlAll
   ) as string;
@@ -21,8 +24,9 @@ export const App = () => {
   ) as string;
   useEffect(() => {
     myAPI.update(title);
+    dispatch(setHtmlBody());
     dispatch(setHtmlAll());
-  }, [title, htmlAll]);
+  }, [title, htmlBody, htmlAll]);
 
   return (
     <Layout>

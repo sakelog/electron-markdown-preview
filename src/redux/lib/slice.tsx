@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { markdownToHtml } from '../../lib/markdownToHtml';
+import {
+  markdownToHtml,
+  markdownToHtmlDocument,
+} from '../../lib/markdownToHtml';
 
 type reducerState = {
   title: string;
@@ -27,14 +30,21 @@ export const markdownSlice = createSlice({
     setMarkdownBody: (state, action) => {
       state.markdownBody = action.payload;
     },
-    setHtmlAll: (state) => {
-      state.htmlAll = markdownToHtml(
+    setHtmlBody: (state) => {
+      state.htmlBody = markdownToHtml(
         '# ' + state.title + '\n\n' + state.markdownBody
       );
+    },
+    setHtmlAll: (state) => {
+      state.htmlAll = markdownToHtmlDocument({
+        title: state.title,
+        markdown: '# ' + state.title + '\n\n' + state.markdownBody,
+      });
     },
   },
 });
 
-export const { setTitle, setMarkdownBody, setHtmlAll } = markdownSlice.actions;
+export const { setTitle, setMarkdownBody, setHtmlBody, setHtmlAll } =
+  markdownSlice.actions;
 
 export default markdownSlice.reducer;

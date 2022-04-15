@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
-import { setTitle } from '../redux/lib/slice';
+import { setTitle, setHtmlAll } from '../redux/lib/slice';
 
 import ButtonBase from './ButtonBase';
 
@@ -18,6 +18,7 @@ const FileOpenButton = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const onHandleSave = useCallback(async () => {
+    dispatch(setHtmlAll());
     const { outputTitle, status } = await myAPI.fileSaveAsHtml({
       title,
       htmlAll,

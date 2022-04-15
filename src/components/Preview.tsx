@@ -7,8 +7,8 @@ import { Flex, Box } from '@chakra-ui/react';
 import style from '../styles/Object/Component/preview.module.scss';
 
 const Preview = () => {
-  const htmlAll = useSelector<RootState>(
-    (state) => state.mainState.htmlAll
+  const htmlBody = useSelector<RootState>(
+    (state) => state.mainState.htmlBody
   ) as string;
 
   return (
@@ -26,7 +26,7 @@ const Preview = () => {
       >
         <Box
           dangerouslySetInnerHTML={{
-            __html: htmlAll,
+            __html: htmlBody,
           }}
           className={style.body}
         />

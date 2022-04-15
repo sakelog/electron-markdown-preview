@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
-import { setMarkdownBody, setTitle, setHtmlAll } from '../redux/lib/slice';
+import { setMarkdownBody, setTitle, setHtmlBody } from '../redux/lib/slice';
 
 import {
   Flex,
@@ -24,14 +24,14 @@ const MarkdownInput = () => {
   const onTitleChange = useCallback(
     (value: string) => {
       dispatch(setTitle(value));
-      dispatch(setHtmlAll());
+      dispatch(setHtmlBody());
     },
     [title]
   );
   const onMarkdownChange = useCallback(
     (value: string) => {
       dispatch(setMarkdownBody(value));
-      dispatch(setHtmlAll());
+      dispatch(setHtmlBody());
     },
     [markdownBody]
   );

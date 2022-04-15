@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../redux/store';
-import { setHtmlAll, setMarkdownBody, setTitle } from '../redux/lib/slice';
+import { setHtmlBody, setMarkdownBody, setTitle } from '../redux/lib/slice';
 
 import ButtonBase from './ButtonBase';
 
@@ -15,7 +15,7 @@ const FileOpenButton = () => {
     if (inputTitle && inputMarkdownBody) {
       dispatch(setTitle(inputTitle));
       dispatch(setMarkdownBody(inputMarkdownBody));
-      dispatch(setHtmlAll());
+      dispatch(setHtmlBody());
     }
   }, []);
   return <ButtonBase clickFunction={onHandleInput}>ファイルを開く</ButtonBase>;
