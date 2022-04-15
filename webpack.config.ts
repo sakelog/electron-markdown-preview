@@ -59,7 +59,7 @@ const renderer: Configuration = {
   ...common,
   target: "electron-renderer",
   entry: {
-    index: path.resolve(__dirname,"src","renderer","index.tsx"),
+    renderer: path.resolve(__dirname,"src","renderer","index.tsx"),
   },
   plugins: [
     new HtmlWebpackPlugin({
