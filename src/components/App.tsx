@@ -5,7 +5,7 @@ import { setHtmlAll, setHtmlBody } from '../redux/lib/slice';
 
 import Layout from '../layout/base';
 import loadable from '@loadable/component';
-const MarkdownInput = loadable(() => import('./MarkdownInput'));
+const InputMarkdown = loadable(() => import('./InputMarkdown'));
 const Preview = loadable(() => import('./Preview'));
 import { Grid, GridItem } from '@chakra-ui/react';
 
@@ -36,7 +36,7 @@ export const App = () => {
         h="100%"
       >
         <GridItem p={4} h="100%">
-          <MarkdownInput />
+          <InputMarkdown />
         </GridItem>
         <GridItem h="100%" p={4} overflow="hidden">
           <Preview />
