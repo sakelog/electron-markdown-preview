@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/store';
 import { setMarkdownBody, setTitle, setHtmlBody } from '../redux/lib/slice';
@@ -10,9 +10,11 @@ import {
   FormHelperText,
   Input,
   Textarea,
+  Box,
 } from '@chakra-ui/react';
+import ButtonFileSaveAsMd from './ButtonFileSaveAsMd';
 
-const MarkdownInput = () => {
+const InputMarkdown = () => {
   const title = useSelector<RootState>(
     (state) => state.mainState.title
   ) as string;
@@ -57,13 +59,16 @@ const MarkdownInput = () => {
           onChange={(e) => onMarkdownChange(e.target.value)}
           variant="filled"
           resize="none"
-          overflow="scroll"
+          overflowY="scroll"
           flex="1"
         />
         <FormHelperText>本文をマークダウン形式で入力</FormHelperText>
       </FormControl>
+      <Box py={4}>
+        <ButtonFileSaveAsMd />
+      </Box>
     </Flex>
   );
 };
 
-export default MarkdownInput;
+export default InputMarkdown;
