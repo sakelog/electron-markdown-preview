@@ -5,7 +5,6 @@ import { AppDispatch } from '../redux/store';
 import { setHtmlBody, setMarkdownBody, setTitle } from '../redux/lib/slice';
 
 import { Button } from '@chakra-ui/react';
-import ButtonBase from './ButtonBase';
 
 const { myAPI } = window;
 
