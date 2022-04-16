@@ -30,6 +30,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "electron": "^18.0.3",
+    "electron-builder": "^23.0.3",
     "electron-reload": "^2.0.0-alpha.1",
     "electron-search-devtools": "^1.6.4",
     "eslint": "^8.13.0",
@@ -63,5 +64,16 @@
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "build": {
+    "extraMetadata": {
+      "main": "./dist/main.js"
+    },
+    "files": [
+      "dist/**/*"
+    ],
+    "directories": {
+      "output": "release"
+    }
+  }
 }
